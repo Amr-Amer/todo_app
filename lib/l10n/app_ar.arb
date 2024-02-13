@@ -1,0 +1,18 @@
+{
+  "app_title" : "تو دو",
+  "task_list" : "قائمه المهام" ,
+  "settings" : "الأعدادات" ,
+  "add_new_task" : "اضافه مهمه جديده",
+  "enter_task_title" : "ادخل اسم المهمه" ,
+  "please_enter_task_title" : "من فضلك ادخل اسم المهمه" ,
+  "enter_task_description" : "ادخل وصف المهمه" ,
+  "please_enter_task_description" : "من فضلك ادخل وصف المهمه" ,
+  "select_date" : "اختيار الوقت" ,
+  "add" : "اضافه" ,
+  "language" : "اللغه" ,
+  "english" : "الانجليزيه" ,
+  "arabic" : "العربيه" ,
+  "theme" : "المود" ,
+  "light" : "نهارى" ,
+  "dark" : "ليلى"
+}
