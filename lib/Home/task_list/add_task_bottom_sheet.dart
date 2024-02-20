@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Home/my_theme.dart';
+import 'package:todo_app/firebase_utils.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/provider/app_config_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/provider/list_provider.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({Key? key}) : super(key: key);
@@ -20,6 +22,8 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   String title = '';
 
   String description = '';
+
+  late ListProvider listProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +149,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (chosenDate != null) {
       selectedDate = chosenDate;
@@ -154,6 +158,15 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 
   void addTask() {
-    if (formKey.currentState!.validate() == true) {}
+    if (formKey.currentState!.validate() == true) {
+      Task task =
+          Task(title: title, description: description, dateTime: selectedDate);
+
+      FirebaseUtils.addTaskToFireStore(task)
+          .timeout(const Duration(milliseconds: 500), onTimeout: () {
+        print('task added successfully');
+        Navigator.pop(context);
+      });
+    }
   }
 }

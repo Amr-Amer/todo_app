@@ -3,8 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Home/my_theme.dart';
 import 'package:todo_app/provider/app_config_provider.dart';
 
+import '../../model/task.dart';
+
 class TaskListItem extends StatelessWidget {
-  const TaskListItem({Key? key}) : super(key: key);
+  Task task;
+
+  TaskListItem({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +36,13 @@ class TaskListItem extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
-              Text('Task',
+              Text(task.title ?? '',
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!
                       .copyWith(color: MyTheme.primaryColor)),
               Text(
-                'Desc',
+                task.description ?? '',
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
